@@ -11,7 +11,7 @@ public class TheThingNamer3000 {
          * String to store what the user named the thing
          * Receives the user's input from System.in
          */
-        String a = input.next();
+        String a = input.nextLine();
 
         System.out.println("How would you describe it? Big? Azure? Tattered?");
 
@@ -19,7 +19,7 @@ public class TheThingNamer3000 {
          * String to store the user's description of the thing
          * Receives the user's input from System.in
          */
-        String b = input.next();
+        String b = input.nextLine();
 
         //String that describes what the thing is of, currently 'Doom'
         String c = "Doom";
