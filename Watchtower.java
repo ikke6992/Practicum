@@ -6,7 +6,7 @@ public class Watchtower {
         String result = "The enemy is ";
         
         if (x == 0 && y == 0) {
-            return result += "here!";
+            result += "here!";
         } else {
             result += "to the ";
             
@@ -22,18 +22,19 @@ public class Watchtower {
                 result += "west";
             }
             
-            return result + "!";            
+            result += "!";            
         }
+        return result;
     }
     
     public static void main(String[] args) {
         
         Scanner scanner = new Scanner(System.in);
         
-        System.out.println("Where is the enemy?\nx:");
+        System.out.print("Where is the enemy?\nx: ");
         int x = scanner.nextInt();
         
-        System.out.println("y:");
+        System.out.print("y: ");
         int y = scanner.nextInt();
         
         System.out.println(alarm(x, y));

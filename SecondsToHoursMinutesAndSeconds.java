@@ -2,6 +2,12 @@ import java.util.Scanner;
 
 public class SecondsToHoursMinutesAndSeconds {
     
+    public static String prefixZero(int number) {
+        
+        if (number < 10) return "0" + number;
+        return Integer.toString(number);
+    }
+    
     public static void main(String[] args) {
         
         Scanner scanner = new Scanner(System.in);
@@ -15,6 +21,7 @@ public class SecondsToHoursMinutesAndSeconds {
         int allHours = allMinutes/60;
         int onlyHours = allHours % 24;
         
-        System.out.println(onlyHours + ":" + onlyMinutes + ":" + onlySeconds);
+        
+        System.out.printf("%s:%s:%s", prefixZero(onlyHours), prefixZero(onlyMinutes), prefixZero(onlySeconds));
     }
 }

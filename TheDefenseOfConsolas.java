@@ -37,10 +37,10 @@ public class TheDefenseOfConsolas {
         int column = scanner.nextInt();    
 
         System.out.printf("Deploy to:");
-        System.out.printf("%s (%d, %d)", Colour.RED, row, column-1);
-        System.out.printf("%s (%d, %d)", Colour.GREEN, row-1, column);
-        System.out.printf("%s (%d, %d)", Colour.YELLOW, row, column+1);
-        System.out.printf("%s (%d, %d)", Colour.CYAN, row+1, column);
+        System.out.printf("%s(%d, %d)", Colour.RED, row, column-1);
+        System.out.printf("%s(%d, %d)", Colour.GREEN, row-1, column);
+        System.out.printf("%s(%d, %d)", Colour.YELLOW, row, column+1);
+        System.out.printf("%s(%d, %d)", Colour.CYAN, row+1, column);
         
         System.out.print(Colour.RESET);
 
