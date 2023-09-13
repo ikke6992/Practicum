@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Map;
 
-public class alphabetAnimalGame {
+public class AlphabetAnimalGame {
     
     private static Map<Character, String> animals = Map.of('a', "Aardvark!", 'b', "Blue Whale!", 'c', "Cheetah!",
         'd', "Dingo!", 'e', "Eagle!", 'f', "Fox!", 'g', "Giraffe!", 'h', "Hippopotamus!", 'i', "Ibex!", 'j', "Jackdaw!",
