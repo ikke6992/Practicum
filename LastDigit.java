@@ -15,7 +15,5 @@ public class LastDigit {
         boolean same = (firstNum % 10 == secondNum % 10);
         System.out.println("It's " + same + " that " + firstNum +
             " and " + secondNum + " have the same last digit");
-
-        scanner.close();
     }
 }

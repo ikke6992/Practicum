@@ -11,13 +11,12 @@ public class TheDefenseOfConsolas {
         int row = scanner.nextInt();
 
         System.out.println("Target Column?");
-        int column = scanner.nextInt();		
+        int column = scanner.nextInt();        
 
         System.out.println("Deploy to:\n\u001B[31m(" + row + ", " + (column - 1) +
             ")\n\u001B[32m(" + (row - 1) + ", " + column + ")\n\u001B[33m(" + row + ", " +
             (column + 1) + ")\n\u001B[34m(" + (row + 1) + ", " + column + ")\u001B[0m");
 
-        scanner.close();
-		Toolkit.getDefaultToolkit().beep();
+        Toolkit.getDefaultToolkit().beep();
     }
 }

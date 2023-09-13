@@ -28,6 +28,5 @@ public class TheThingNamer3000 {
         String d = "3000";
 
         System.out.println("The " + b + " " + a + " of " + c + " " + d + "!");
-        input.close();
     }
 }
