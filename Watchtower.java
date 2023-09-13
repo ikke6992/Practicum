@@ -22,7 +22,7 @@ public class Watchtower {
                 result += "west";
             }
             
-            return result += "!";            
+            return result + "!";            
         }
     }
     

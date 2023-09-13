@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class TheDominionOfKings {
     
+    private static final int DUCHY_SCORE = 3;
+    private static final int PROVINCE_SCORE = 6;
+    
     public static void main(String[] args) {
         
         Scanner scanner = new Scanner(System.in);
@@ -15,7 +18,7 @@ public class TheDominionOfKings {
         System.out.println("Insert number of provinces:");
         int provinces = scanner.nextInt();
         
-        int score = estates + duchies * 3 + provinces * 6;
+        int score = estates + duchies * DUCHY_SCORE + provinces * PROVINCE_SCORE;
         System.out.println("Your point total is " + score);
     }
 }

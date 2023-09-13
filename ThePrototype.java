@@ -20,7 +20,7 @@ public class ThePrototype {
         int iterator = 1;
         System.out.println("Hunter, guess the mumber.");
         
-        while (!correct) {
+        do {
             System.out.println("What is your next guess?");
             
             int guess = scanner.nextInt();
@@ -44,6 +44,6 @@ public class ThePrototype {
             }
             
             iterator++;
-        }
+        } while (!correct);
     }
 }
