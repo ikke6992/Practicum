@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.math.BigInteger;
 
 public class Factorial {
 
@@ -13,11 +14,11 @@ public class Factorial {
         } while (number < 0);
 
 
-        long factorial = 1 l;
-        for (int i = 2; i <= number; i++) {
-            factorial *= i;
+        BigInteger factorial = BigInteger.valueOf(1L);
+        for (long i = 2L; i <= number; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
         }
 
-        System.out.printf("The factorial of %d is %d", number, factorial);
+        System.out.printf("The factorial of %d is %s", number, factorial.toString());
     }
 }
