@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public class BuyingInventory {
+    
+    private record Item(String name, int price) {}
 
     private static final String MY_NAME = "Thomas";
     private static final DecimalFormat PRICE = new DecimalFormat("0.00");
-    private static Map < String, Integer > priceList = Map.of("Rope", 10, "Torches", 15, "Climbing equipment", 25,
-        "Clean water", 1, "Machete", 20, "Canoe", 300, "Food supplies", 1);
-    private static List < String > items = Arrays.asList(null, "Rope", "Torches", "Climbing equipment", "Clean water",
-        "Machete", "Canoe", "Food supplies");
+    private static List<Item> items = Arrays.asList(null, new Item("Rope", 10), new Item("Torches", 15), new Item("Climbing equipment", 25),
+        new Item("Clean water", 1), new Item("Machete", 20), new Item("Canoe", 300), new Item("Food supplies", 1));
 
     public static String getPrice(int item, String name) {
 
@@ -62,15 +62,15 @@ public class BuyingInventory {
         return message;
     }
 
-    public static String getPriceMap(int item, String name) {
+    public static String getPriceList(int item, String name) {
 
         double discount = name.equals(MY_NAME) ? 0.5 : 1.0;
 
         String message;
 
-        if (item >= 1 && item <= 7) {
-            String itemName = items.get(item);
-            double price = discount * priceList.get(itemName);
+        if (item >= 1 && item < items.size()) {
+            String itemName = items.get(item).name();
+            double price = discount * items.get(item).price();
             message = String.format("%s costs %s gold", itemName, PRICE.format(price));
         } else {
             message = "Invalid item identifier";
@@ -83,15 +83,16 @@ public class BuyingInventory {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Input item identifier:\n" +
-            "1: Rope\n2: Torches\n3: Climbing Equipment\n" +
-            "4: Clean Water\n5: Machete\n6: Canoe\n7: Food Supplies");
+        System.out.println("Input item identifier:");
+        for (int i = 1; i < items.size(); i++) {
+            System.out.printf("%d: %s\n", i, items.get(i).name());
+        }
         int item = scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("What is your name?");
         String name = scanner.nextLine();
 
-        System.out.println(getPriceMap(item, name));
+        System.out.println(getPriceList(item, name));
     }
 }
