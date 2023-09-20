@@ -1,75 +1,56 @@
 import java.util.Scanner;
-import java.util.Map;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AlphabetAnimalGame {
     
-    private static Map<Character, String> animals = Map.of('a', "Aardvark!", 'b', "Blue Whale!", 'c', "Cheetah!",
-        'd', "Dingo!", 'e', "Eagle!", 'f', "Fox!", 'g', "Giraffe!", 'h', "Hippopotamus!", 'i', "Ibex!", 'j', "Jackdaw!",
-        'k', "Kangaroo!", 'l', "Lemur!", 'm', "Meerkat!", 'n', "Narwhal!", 'o', "Okapi!", 'p', "Penguin!", 'q', "Quetzal!",
-        'r', "Raccoon!", 's', "Snow Leopard!", 't', "Toucan!", 'v', "Viper!", 'w', "Warthog!", 'y', "Yak!", 'z', "Zebra!");
+    private static List<String> animals = Arrays.asList(new String[]{"Aardvark!", "Blue Whale!", "Cheetah!", "Dingo!", "Eagle!", "Fox!", "Giraffe!", "Ibex!", "Jackdaw!",
+        "Kangaroo!", "Lemur!", "Meerkat!", "Narwhal!", "Okapi!", "Penguin!", "Quetzal!", "Raccoon!", "Snow Leopard!", "Toucan!", "Viper!", "Warthog!", "Yak!", "Zebra!"});
     
     public static String response(String animal) {
         
-        char lastLetter = animal.charAt(animal.length() - 1).toLowerCase();
+        Character lastLetter = animal.toUpperCase().charAt(animal.length() - 1);
         
-        if (animals.keySet().contains(lastLetter)) {
-            return animals.get(lastLetter);
-        } else {
-            return "I don't know any animal that starts with '" + lastLetter + "'. You win!";
-        /*
-        switch (lastLetter) {
-            case 'a', 'A':
-                return "Aardvark!";
-            case 'b', 'B':
-                return "Blue Whale!";
-            case 'c', 'C':
-                return "Cheetah!";
-            case 'd', 'D':
-                return "Dingo!";
-            case 'e', 'E':
-                return "Eagle!";
-            case 'f', 'F':
-                return "Fox!";
-            case 'g', 'G':
-                return "Giraffe!";
-            case 'h', 'H':
-                return "Hippopotamus!";
-            case 'i', 'I':
-                return "Ibex!";
-            case 'j', 'J':
-                return "Jackdaw!";
-            case 'k', 'K':
-                return "Kangaroo!";
-            case 'l', 'L':
-                return "Lemur!";
-            case 'm', 'M':
-                return "Meerkat!";
-            case 'n', 'N':
-                return "Narwhal!";
-            case 'o', 'O':
-                return "Okapi!";
-            case 'p', 'P':
-                return "Penquin!";
-            case 'q', 'Q':
-                return "Quetzal!";
-            case 'r', 'R':
-                return "Raccoon!";
-            case 's', 'S':
-                return "Snow Leopard!";
-            case 't', 'T':
-                return "Toucan!";
-            case 'v', 'V':
-                return "Viper!";
-            case 'w', 'W':
-                return "Warthog!";
-            case 'y', 'Y':
-                return "Yak!";
-            case 'z', 'Z':
-                return "Zebra!";
-            default:
-                return "I don't know any animal that starts with '" + lastLetter + "'. You win!";
-            */
+        for (String response : animals) {
+            if (lastLetter.equals(response.charAt(0))) {
+                return response;
+            }
         }
+        return "I don't know any animal that starts with '" + lastLetter + "'. You win!";
+    }
+        
+    public static String responseSwitch(String animal) {
+        
+        char lastLetter = animal.toLowerCase().charAt(animal.length() - 1);
+        
+        return switch (lastLetter) {
+            case 'a' -> "Aardvark!";
+            case 'b' -> "Blue Whale!";
+            case 'c' -> "Cheetah!";
+            case 'd' -> "Dingo!";
+            case 'e' -> "Eagle!";
+            case 'f' -> "Fox!";
+            case 'g' -> "Giraffe!";
+            case 'h' -> "Hippopotamus!";
+            case 'i' -> "Ibex!";
+            case 'j' -> "Jackdaw!";
+            case 'k' -> "Kangaroo!";
+            case 'l' -> "Lemur!";
+            case 'm' -> "Meerkat!";
+            case 'n' -> "Narwhal!";
+            case 'o' -> "Okapi!";
+            case 'p' -> "Penquin!";
+            case 'q' -> "Quetzal!";
+            case 'r' -> "Raccoon!";
+            case 's' -> "Snow Leopard!";
+            case 't' -> "Toucan!";
+            case 'v' -> "Viper!";
+            case 'w' -> "Warthog!";
+            case 'y' -> "Yak!";
+            case 'z' -> "Zebra!";
+            default -> "I don't know any animal that starts with '" + lastLetter + "'. You win!";
+        };           
     }
     
     public static void main(String[] args) {
