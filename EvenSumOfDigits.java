@@ -2,7 +2,7 @@ public class EvenSumOfDigits {
 
     public static void main(String[] args) {
 
-        for (int i = -150; i < 150; i++) {
+        for (int i = 100; i < 150; i++) {
 
             if (sumOfDigits(i) % 2 == 0) {
                 System.out.println(i);

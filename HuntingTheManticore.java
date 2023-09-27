@@ -32,55 +32,7 @@ public class HuntingTheManticore {
         ManticoreHunting hunting = new ManticoreHunting(scanner, distance);
         System.out.println("Player 2, it is your turn.");
         
-        hunting.run();
-        
-        /*
-        do {
-            System.out.println("--------------------------------------------------------");
-            System.out.printf("STATUS: Round: %d City: %d/%d Manticore %d/%d\n",
-                round, cityLives, CITY_HITPOINTS, manticoreLives, MANTICORE_HITPOINTS);
-            
-            //Determines the damage done this round based on whether there is a status effect
-            int damage = REGULAR;
-            if (round % FIRE == 0 || round % ELECTRIC == 0) {
-                damage = ONE_EFFECT;
-                if (round % ELECTRIC_FIRE == 0) {
-                    damage = DOUBLE_EFFECT;
-                }
-            }
-            System.out.printf("The cannon is expected to deal %d damage this round.\n", damage);
-            
-            /*
-             * Asks the second player the location to hit with the cannon
-             * until the player has input a valid number
-             
-            int range = Integer.MIN_VALUE;
-            do {
-                System.out.print("Enter desired cannon range: ");
-                range = TakingANumber.askForNumber(scanner.nextLine());
-            } while (range == Integer.MIN_VALUE);
-            
-            // Checks whether the cannon has hit the Manticore
-            if (range == distance) {
-                manticoreLives -= damage;
-                System.out.println("That round was a DIRECT HIT!");
-            } else if (range > distance) {
-                System.out.println("That round OVERSHOT the target.");
-            } else {
-                System.out.println("That round FELL SHORT of the target");
-            }
-            
-            // The Manticore attacks the city if it's not yet destroyed
-            if (manticoreLives > 0) {
-                cityLives--;
-            }
-            
-            //Next round
-            round++;
-            
-        } while (cityLives > 0 && manticoreLives > 0);
-        */
-        
+        hunting.run();        
         
         // Determines who has won the game
         if (!hunting.cityIsAlive()) {
