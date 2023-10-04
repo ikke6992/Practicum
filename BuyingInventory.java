@@ -21,7 +21,7 @@ public class BuyingInventory {
         String message;
 
         if (itemId >= 1 && itemId < items.size()) {
-            String itemName = items.get(item).name();
+            String itemName = items.get(itemId).name();
             double price = discount * items.get(itemId).price();
             message = String.format("%s costs %s gold", itemName, PRICE.format(price));
         } else {
