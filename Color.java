@@ -3,9 +3,9 @@ public class Color {
     private static final int MIN_COLOR = 0;
     private static final int MAX_COLOR = 255;
     
-    private int red;
-    private int green;
-    private int blue;
+    private final int red;
+    private final int green;
+    private final int blue;
     
     public static final Color WHITE = new Color(MAX_COLOR, MAX_COLOR, MAX_COLOR);
     public static final Color BLACK = new Color(MIN_COLOR, MIN_COLOR, MIN_COLOR);
@@ -28,7 +28,7 @@ public class Color {
         setBlue(blue);
     }
     
-    public int inRange(int value) {
+    private int inRange(int value) {
         if (value > MAX_COLOR) {
             return MAX_COLOR;
         } else if (value < MIN_COLOR) {
@@ -37,15 +37,15 @@ public class Color {
         return value;        
     }
     
-    public void setRed(int red) {
+    private void setRed(int red) {
         this.red = inRange(red);
     }
     
-    public void setGreen(int green) {
+    private void setGreen(int green) {
         this.green = inRange(green);
     }
     
-    public void setBlue(int blue) {
+    private void setBlue(int blue) {
         this.blue = inRange(blue);
     }
     
