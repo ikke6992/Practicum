@@ -2,11 +2,19 @@ import java.util.Scanner;
 
 public class HangmanHandler {
     
+    /**
+     * Method to start playing Hangman with the computer
+     * picking a random word to guess.
+     */
     public static Hangman singleplayer() {
         return new Hangman();
 
     }
     
+    /**
+     * Method to start playing Hangman with one player entering
+     * the word for the other player to guess.
+     */
     public static Hangman multiplayer(Scanner scanner) {
         
         System.out.println("Enter a word:");
@@ -20,6 +28,9 @@ public class HangmanHandler {
         
     }
     
+    /**
+     * Plays a Hangman game.
+     */
     public static void main(String[] args) {
         
 
@@ -31,6 +42,7 @@ public class HangmanHandler {
         Hangman hangman = multiplayer.equalsIgnoreCase("Y") ? multiplayer(in) : singleplayer();
         System.out.print(hangman.displayWord());
 
+        //Keep querying for guesses until the game is over.
         do {  
             System.out.print(hangman.displayTurn());
             String guess = in.nextLine().toUpperCase();
@@ -47,6 +59,7 @@ public class HangmanHandler {
             System.out.print(hangman.displayWord());
         } while (!hangman.gameOver());
 
+        //Show whether the player has won, if not show what the word was.
         if (hangman.winner()) {
             System.out.println(" Congratulations! You found the word!");
         } else {
