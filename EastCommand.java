@@ -1,4 +1,4 @@
-public class EastCommand extends RobotCommand {
+public class EastCommand implements RobotCommand {
     
     public void run(Robot robot) {
         if (robot.isPowered) {

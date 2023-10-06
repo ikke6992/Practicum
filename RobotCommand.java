@@ -1,6 +1,6 @@
-public abstract class RobotCommand {
+interface RobotCommand {
     
-    public abstract void run(Robot robot);
+    void run(Robot robot);
 
 
 }

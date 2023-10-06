@@ -1,4 +1,4 @@
-public class OnCommand extends RobotCommand {
+public class OnCommand implements RobotCommand {
     
     public void run(Robot robot) {
         robot.isPowered = true;
