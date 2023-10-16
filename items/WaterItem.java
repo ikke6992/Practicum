@@ -6,6 +6,7 @@ public class WaterItem extends InventoryItem {
         super(2.0, 3.0);
     }
     
+    @Override
     public String toString() {
         return "Water";
     }

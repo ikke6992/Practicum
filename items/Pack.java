@@ -54,6 +54,7 @@ public class Pack {
         return MAX_VOLUME;
     }
     
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("Pack containing");
         for(int i = 0; i < next; i++) {

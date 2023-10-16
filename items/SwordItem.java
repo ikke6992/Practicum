@@ -6,6 +6,7 @@ public class SwordItem extends InventoryItem {
         super(5.0, 3.0);
     }
     
+    @Override
     public String toString() {
         return "Sword";
     }

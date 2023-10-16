@@ -45,7 +45,7 @@ public class Hangman {
     /**
      * Picks a random word from words.txt file.
      */
-    public String wordPicker() {
+    private String wordPicker() {
         List<String> words;
         try {
             words = Files.readAllLines(Paths.get("words.txt"));
@@ -104,9 +104,7 @@ public class Hangman {
      * Displays guessedLetters.
      */
     public String displayWord() {
-        StringBuilder builder = new StringBuilder("Word: ");
-        builder.append(guessedLetters);
-        return builder.toString();
+        return "Word " + String.valueOf(guessedLetters);
     }
     
     /**

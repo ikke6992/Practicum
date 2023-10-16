@@ -10,7 +10,6 @@ public class HangmanHandler {
      */
     public static Hangman singleplayer() {
         return new Hangman();
-
     }
     
     /**
@@ -27,7 +26,6 @@ public class HangmanHandler {
         }
         
         return new Hangman(word);
-        
     }
     
     /**
