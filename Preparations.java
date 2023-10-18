@@ -23,18 +23,18 @@ public class Preparations {
         
         @Override
         public String toString() {
-            return new String(super.toString().toLowerCase());
+            return new String(name().toLowerCase());
         }
     }
     
     public record Sword(Material material, Gemstone gemstone, int length, int width) {
         
-        public Sword withMaterial(Material material) {
-            return new Sword(material, gemstone(), length(), width());
+        public Sword withMaterial(Material newMaterial) {
+            return new Sword(newMaterial, gemstone, length, width);
         }
         
-        public Sword withGemstone(Gemstone gemstone) {
-            return new Sword(material(), gemstone, length(), width());
+        public Sword withGemstone(Gemstone newGemstone) {
+            return new Sword(material, newGemstone, length, width);
         }
         
         @Override

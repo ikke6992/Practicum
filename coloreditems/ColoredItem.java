@@ -15,7 +15,7 @@ public class ColoredItem<T> {
 
         private final String code;
 
-        ConsoleColor(String code) {
+        private ConsoleColor(String code) {
             this.code = String.format("\033[0%sm", code);
         }
 
@@ -25,8 +25,8 @@ public class ColoredItem<T> {
         }
     }
     
-    private T item;
-    private ConsoleColor color;
+    private final T item;
+    private final ConsoleColor color;
     
     public ColoredItem(T item, ConsoleColor color) {
         this.item = item;
@@ -34,7 +34,7 @@ public class ColoredItem<T> {
     }
     
     public void display() {
-        System.out.println(color + "" + item.toString() + "" + ConsoleColor.RESET);
+        System.out.println(color + item.toString() + ConsoleColor.RESET);
     }
     
     public static void main(String[] args) {

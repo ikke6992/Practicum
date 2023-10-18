@@ -1,6 +1,6 @@
 public class TheMagicCannon {
 
-    public enum Colour {
+    public enum Color {
         RESET("\033[0m"),
         BLACK("\033[0;30m"),
         RED("\033[0;31m"),
@@ -13,7 +13,7 @@ public class TheMagicCannon {
 
         private final String code;
 
-        Colour(String code) {
+        private Color(String code) {
             this.code = code;
         }
 
@@ -29,16 +29,20 @@ public class TheMagicCannon {
 
         if (i % 3 == 0) {
             if (i % 5 == 0) {
-                fire += Colour.CYAN + "Electric Fire" + Colour.RESET;
+                fire += colorString("Electric Fire", Color.CYAN);
             } else {
-                fire += Colour.RED + "Fire" + Colour.RESET;
+                fire += colorString("Fire", Color.RED);
             }
         } else if (i % 5 == 0) {
-            fire += Colour.YELLOW + "Electric" + Colour.RESET;
+            fire += colorString("Electric", Color.YELLOW);
         } else {
             fire += "Normal";
         }
         return fire;
+    }
+    
+    public static String colorString(String toColor, Color color) {
+        return new String(color + toColor + Color.RESET);
     }
 
     public static void main(String[] args) {

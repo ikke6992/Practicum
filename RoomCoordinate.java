@@ -3,13 +3,8 @@ public class RoomCoordinate {
     public record Coordinate(int row, int column) {}
     
     public static boolean adjacent(Coordinate c1, Coordinate c2) {
-        if ((c1.row() == c2.row() &&
-            Math.abs(c1.column() - c2.column()) == 1) ||
-            (c1.column() == c2.column() &&
-            Math.abs(c1.row() - c2.row()) == 1)) {
-            return true;
-        }
-        return false;
+        return Math.abs(c1.row - c2.row) + Math.abs(c1.column - c2.column) == 1;
+
     }
     
     public static void main(String[] args) {
