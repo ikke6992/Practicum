@@ -42,6 +42,12 @@ public class Card {
         return rank;
     }
     
+    public boolean isSymbol() {
+        return rank == Rank.DOLLARSIGN || rank == Rank.PERCENT ||
+            rank == Rank.CIRCUMFLEX || rank == Rank.AMPERSAND;
+    }
+    
+    @Override
     public String toString() {
         return String.format("THE %s %s", getColor(), getRank());
     }
@@ -50,7 +56,8 @@ public class Card {
         
         for (Color color : Color.values()) {            
             for (Rank rank : Rank.values()) {
-                System.out.println(new Card(color, rank));
+                Card card = new Card(color, rank);
+                System.out.println(card + " " + card.isSymbol());
             }
         }
     }
