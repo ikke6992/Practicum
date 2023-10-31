@@ -58,18 +58,26 @@ public class Game {
         int pitrooms = (LENGTH * LENGTH) / (MINLENGTH * MINLENGTH);
         int current = 0;
         do {
-            int k;
-            int l;
-            do {
-                k = (int)(Math.random()*LENGTH);
-                l = (int)(Math.random()*LENGTH);
-            } while ((k == 0 && l == 0) || (k == i && l == j));
+            int x = (int)(Math.random()*LENGTH);
+            int y = (int)(Math.random()*LENGTH);
             
-            if (!(grid[k][l] instanceof PitRoom)) {
-                grid[k][l] = new PitRoom();
+            if (!(grid[x][y] instanceof SpecialRoom)) {
+                grid[x][y] = new PitRoom();
                 current++;
             }
         } while (current < pitrooms);
+        
+        int maelstromrooms = LENGTH / MINLENGTH;
+        current = 0;
+        do {
+            int x = (int)(Math.random()*LENGTH);
+            int y = (int)(Math.random()*LENGTH);
+            
+            if (!(grid[x][y] instanceof SpecialRoom)) {
+                grid[x][y] = new MaelstromRoom();
+                current++;
+            }
+        } while (current < maelstromrooms);
         
         row = 0;
         column = 0;
@@ -111,6 +119,23 @@ public class Game {
         }
         if (grid[row][column] instanceof PitRoom) {
             end();
+        } else {
+            while (grid[row][column] instanceof MaelstromRoom) {
+                System.out.println(((SpecialRoom) grid[row][column]).getSense());
+                grid[row][column] = new EmptyRoom();
+                int i = (row + 1) % LENGTH;
+                int j = (column + LENGTH - 2) % LENGTH;
+                while (grid[i][j] instanceof SpecialRoom) {
+                    i = (row + 1) % LENGTH;
+                    j = (column + LENGTH - 2) % LENGTH;
+                }
+                grid[i][j] = new MaelstromRoom();
+                row = (row + LENGTH - 1) % LENGTH;
+                column = (column + 2) % LENGTH;
+                if (grid[row][column] instanceof PitRoom) {
+                    end();
+                }
+            }
         }
     }
     
@@ -121,10 +146,21 @@ public class Game {
         }
     }
     
-    public boolean sensedraft() {
+    public boolean senseDraft() {
         for (int i = Math.max(row-1, 0); i <= Math.min(row+1, LENGTH-1); i++) {
             for (int j = Math.max(column-1, 0); j <= Math.min(column+1, LENGTH-1); j++) {
                 if (grid[i][j] instanceof PitRoom) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean senseGrowl() {
+        for (int i = Math.max(row-1, 0); i <= Math.min(row+1, LENGTH-1); i++) {
+            for (int j = Math.max(column-1, 0); j <= Math.min(column+1, LENGTH-1); j++) {
+                if (grid[i][j] instanceof MaelstromRoom) {
                     return true;
                 }
             }
@@ -150,8 +186,11 @@ public class Game {
             state += "\n" + ((SpecialRoom) grid[row][column]).getSense();
         }
         
-        if (sensedraft() && !(grid[row][column] instanceof PitRoom)) {
+        if (senseDraft() && !(grid[row][column] instanceof PitRoom)) {
             state += "\nYou feel a draft. There is a pit in a nearby room.";
+        }
+        if (senseGrowl() && !(grid[row][column] instanceof MaelstromRoom)) {
+            state += "\nYou hear the growling and groaning of a maelstrom nearby.";
         }
         return state;
         
