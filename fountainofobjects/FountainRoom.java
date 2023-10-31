@@ -2,19 +2,17 @@ package fountainofobjects;
 
 import myenums.ConsoleColor;
 
-public class FountainRoom implements Room {
+public class FountainRoom extends SpecialRoom {
     
-    private final ConsoleColor blue = ConsoleColor.BLUE;
-    
-    private String sense = blue.colorString("You hear water dripping in this room." +
-        "The Fountain of Objects is here!");
-    
-    public String getSense() {
-        return sense;
+    public FountainRoom() {
+        color = ConsoleColor.BLUE;
+        sense = "You hear water dripping in this room." +
+            "The Fountain of Objects is here!";
     }
     
     public void activate() {
-        sense = blue.colorString("You hear the rushing waters from the Fountain of " +
-            "Objects. It has been reactivated!");
+        sense = "You hear the rushing waters from the Fountain of " +
+            "Objects. It has been reactivated!";
     }
+    
 }

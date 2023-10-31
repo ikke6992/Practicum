@@ -10,6 +10,7 @@ public class Game {
     public boolean ended;
     
     private final int LENGTH;
+    private static final int MINLENGTH = 4;
     
     private int row;
     private int column;
@@ -35,7 +36,7 @@ public class Game {
     }
     
     public Game(int length) {
-        LENGTH = length;
+        LENGTH = Math.max(length, 4);
         grid = new Room[LENGTH][LENGTH];
         
         for (int i = 0; i < LENGTH; i++) {
@@ -53,6 +54,22 @@ public class Game {
             j = (int)(Math.random()*LENGTH);
         } while (i == 0 && j == 0);
         grid[i][j] = new FountainRoom();
+        
+        int pitrooms = (LENGTH * LENGTH) / (MINLENGTH * MINLENGTH);
+        int current = 0;
+        do {
+            int k;
+            int l;
+            do {
+                k = (int)(Math.random()*LENGTH);
+                l = (int)(Math.random()*LENGTH);
+            } while ((k == 0 && l == 0) || (k == i && l == j));
+            
+            if (!(grid[k][l] instanceof PitRoom)) {
+                grid[k][l] = new PitRoom();
+                current++;
+            }
+        } while (current < pitrooms);
         
         row = 0;
         column = 0;
@@ -92,6 +109,9 @@ public class Game {
                 }
             }
         }
+        if (grid[row][column] instanceof PitRoom) {
+            end();
+        }
     }
     
     public void enableFountain() {
@@ -99,6 +119,17 @@ public class Game {
             ((FountainRoom) grid[row][column]).activate();
             activated = true;
         }
+    }
+    
+    public boolean sensedraft() {
+        for (int i = Math.max(row-1, 0); i <= Math.min(row+1, LENGTH-1); i++) {
+            for (int j = Math.max(column-1, 0); j <= Math.min(column+1, LENGTH-1); j++) {
+                if (grid[i][j] instanceof PitRoom) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     public void end() {
@@ -115,10 +146,12 @@ public class Game {
     
     public String getState() {
         String state = String.format("You are in the room at (Row=%d, Column=%d)", row, column);
-        if (grid[row][column] instanceof FountainRoom) {
-            state += "\n" + ((FountainRoom) grid[row][column]).getSense();
-        } else if (grid[row][column] instanceof CavernEntranceRoom) {
-            state += "\n" + ((CavernEntranceRoom) grid[row][column]).getSense();
+        if (grid[row][column] instanceof SpecialRoom) {
+            state += "\n" + ((SpecialRoom) grid[row][column]).getSense();
+        }
+        
+        if (sensedraft() && !(grid[row][column] instanceof PitRoom)) {
+            state += "\nYou feel a draft. There is a pit in a nearby room.";
         }
         return state;
         

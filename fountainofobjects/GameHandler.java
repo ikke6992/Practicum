@@ -66,8 +66,9 @@ public class GameHandler {
             
         } while (!game.hasEnded());
         
+        
+        System.out.println(game.getState());
         if (game.hasWon()) {
-            System.out.println(game.getState());
             System.out.println(ConsoleColor.MAGENTA.colorString("The Fountain of Objects has been reactivated, " + 
                 "and you have escaped with your life!\nYou win!"));
         }
