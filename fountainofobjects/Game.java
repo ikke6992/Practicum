@@ -79,6 +79,18 @@ public class Game {
             }
         } while (current < maelstromrooms);
         
+        int amarokrooms = (LENGTH-2)/2;
+        current = 0;
+        do {
+            int x = (int)(Math.random()*LENGTH);
+            int y = (int)(Math.random()*LENGTH);
+            
+            if (!(grid[x][y] instanceof SpecialRoom)) {
+                grid[x][y] = new AmarokRoom();
+                current++;
+            }
+        } while (current < amarokrooms);
+        
         row = 0;
         column = 0;
         
@@ -117,25 +129,23 @@ public class Game {
                 }
             }
         }
-        if (grid[row][column] instanceof PitRoom) {
-            end();
-        } else {
-            while (grid[row][column] instanceof MaelstromRoom) {
-                System.out.println(((SpecialRoom) grid[row][column]).getSense());
-                grid[row][column] = new EmptyRoom();
-                int i = (row + 1) % LENGTH;
-                int j = (column + LENGTH - 2) % LENGTH;
-                while (grid[i][j] instanceof SpecialRoom) {
-                    i = (row + 1) % LENGTH;
-                    j = (column + LENGTH - 2) % LENGTH;
-                }
-                grid[i][j] = new MaelstromRoom();
-                row = (row + LENGTH - 1) % LENGTH;
-                column = (column + 2) % LENGTH;
-                if (grid[row][column] instanceof PitRoom) {
-                    end();
-                }
+        
+        while (grid[row][column] instanceof MaelstromRoom) {
+            System.out.println(((SpecialRoom) grid[row][column]).getSense());
+            grid[row][column] = new EmptyRoom();
+            int i = (row + 1) % LENGTH;
+            int j = (column + LENGTH - 2) % LENGTH;
+            while (grid[i][j] instanceof SpecialRoom) {
+                i = (row + 1) % LENGTH;
+                j = (column + LENGTH - 2) % LENGTH;
             }
+            grid[i][j] = new MaelstromRoom();
+            row = (row + LENGTH - 1) % LENGTH;
+            column = (column + 2) % LENGTH;
+        }
+        
+        if (grid[row][column] instanceof PitRoom || grid[row][column] instanceof AmarokRoom) {
+            end();
         }
     }
     
@@ -168,6 +178,17 @@ public class Game {
         return false;
     }
     
+    public boolean senseStench() {
+        for (int i = Math.max(row-1, 0); i <= Math.min(row+1, LENGTH-1); i++) {
+            for (int j = Math.max(column-1, 0); j <= Math.min(column+1, LENGTH-1); j++) {
+                if (grid[i][j] instanceof AmarokRoom) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     public void end() {
         ended = true;
     }
@@ -185,12 +206,16 @@ public class Game {
         if (grid[row][column] instanceof SpecialRoom) {
             state += "\n" + ((SpecialRoom) grid[row][column]).getSense();
         }
-        
-        if (senseDraft() && !(grid[row][column] instanceof PitRoom)) {
-            state += "\nYou feel a draft. There is a pit in a nearby room.";
-        }
-        if (senseGrowl() && !(grid[row][column] instanceof MaelstromRoom)) {
-            state += "\nYou hear the growling and groaning of a maelstrom nearby.";
+        if (!hasEnded()) {
+            if (senseDraft() && !(grid[row][column] instanceof PitRoom)) {
+                state += "\nYou feel a draft. There is a pit in a nearby room.";
+            }
+            if (senseGrowl() && !(grid[row][column] instanceof MaelstromRoom)) {
+                state += "\nYou hear the growling and groaning of a maelstrom nearby.";
+            }
+            if (senseStench() && !(grid[row][column] instanceof AmarokRoom)) {
+                state += "\nYou can smell the rotten stench of an amarok in a nearby room.";
+            }
         }
         return state;
         
