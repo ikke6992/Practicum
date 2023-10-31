@@ -54,6 +54,10 @@ public class GameHandler {
                     case "move east" -> game.move(Direction.EAST);
                     case "move south" -> game.move(Direction.SOUTH);
                     case "move west" -> game.move(Direction.WEST);
+                    case "shoot north" -> game.shoot(Direction.NORTH);
+                    case "shoot east" -> game.shoot(Direction.EAST);
+                    case "shoot south" -> game.shoot(Direction.SOUTH);
+                    case "shoot west" -> game.shoot(Direction.WEST);
                     case "enable fountain" -> game.enableFountain();
                     case "exit" -> game.end();
                     default -> System.out.println(ConsoleColor.RED.colorString("Invalid command"));

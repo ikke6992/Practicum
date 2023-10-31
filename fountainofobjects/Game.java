@@ -14,6 +14,7 @@ public class Game {
     
     private int row;
     private int column;
+    private int arrows;
     
     public Game() {
         LENGTH = 4;
@@ -30,6 +31,7 @@ public class Game {
         
         row = 0;
         column = 0;
+        arrows = 5;
         
         activated = false;
         ended = false;
@@ -93,6 +95,7 @@ public class Game {
         
         row = 0;
         column = 0;
+        arrows = 5;
         
         activated = false;
         ended = false;
@@ -149,6 +152,36 @@ public class Game {
         }
     }
     
+    public void shoot(Direction direction) throws InvalidMoveException {
+        if (arrows > 0) {
+            arrows--;
+            switch(direction) {
+                case NORTH -> {
+                    if (row > 0 && grid[row-1][column] instanceof AmarokRoom) {
+                        grid[row-1][column] = new EmptyRoom();
+                    }
+                }
+                case EAST -> {
+                    if (column < LENGTH-1 && grid[row][column+1] instanceof AmarokRoom) {
+                        grid[row][column+1] = new EmptyRoom();
+                    }
+                }
+                case SOUTH -> {
+                    if (row < LENGTH-1 && grid[row+1][column] instanceof AmarokRoom) {
+                        grid[row+1][column] = new EmptyRoom();
+                    }
+                }
+                case WEST -> {
+                    if (column > 0 && grid[row][column-1] instanceof AmarokRoom) {
+                        grid[row][column-1] = new EmptyRoom();
+                    }
+                }
+            }
+        } else {
+            throw new InvalidMoveException();
+        }
+    }
+    
     public void enableFountain() {
         if (grid[row][column] instanceof FountainRoom) {
             ((FountainRoom) grid[row][column]).activate();
@@ -202,7 +235,7 @@ public class Game {
     }
     
     public String getState() {
-        String state = String.format("You are in the room at (Row=%d, Column=%d)", row, column);
+        String state = String.format("You are in the room at (Row=%d, Column=%d). Arrows: %d.", row, column, arrows);
         if (grid[row][column] instanceof SpecialRoom) {
             state += "\n" + ((SpecialRoom) grid[row][column]).getSense();
         }
