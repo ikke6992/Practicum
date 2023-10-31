@@ -4,21 +4,21 @@ import java.util.function.Predicate;
 import myexceptions.MyListFullException;
 import myexceptions.MyIndexOutOfBoundsException;
 
-public class MyIntList {
+public class MyStringList {
     
-    private int[] array;
+    private String[] array;
     private int next;
     private int length;
     private static final int MIN_LENGTH = 16;
     private static final int MAX_LENGTH = 256;
     
-    public MyIntList() {
+    public MyStringList() {
         length = MIN_LENGTH;
-        array = new int[length];
+        array = new String[length];
         next = 0;
     }
     
-    public MyIntList(int length) {
+    public MyStringList(int length) {
         if (length >= MAX_LENGTH) {
             this.length = MAX_LENGTH;
         } else {
@@ -27,13 +27,13 @@ public class MyIntList {
                 this.length *= 2;
             }
         }
-        array = new int[this.length];
+        array = new String[this.length];
         next = 0;
     }
     
-    public MyIntList(int[] array) {
+    public MyStringList(String[] array) {
         this();
-        for(int i : array) {
+        for(String i : array) {
             try {
                 add(i);
             } catch (MyListFullException e) {
@@ -43,28 +43,28 @@ public class MyIntList {
         }
     }
     
-    public void add(int value) throws MyListFullException {
+    public void add(String value) throws MyListFullException {
         if (next >= length) {
             if (length < MAX_LENGTH) {
                 extend();
             } else {
-                throw new MyListFullException("MyIntList is full, not possible to add another value");
+                throw new MyListFullException("MyStringList is full, not possible to add another value");
             }
         }
         array[next] = value;
         next++;
     }
     
-    public int indexAt(int value) {
+    public int indexAt(String value) {
         for (int i = 0; i < next; i++) {
-            if (array[i] == value) {
+            if (array[i].equals(value)) {
                 return i;
             }
         }
         return -1;
     }
     
-    public int getAt(int index) throws MyIndexOutOfBoundsException {
+    public String getAt(int index) throws MyIndexOutOfBoundsException {
         if (index < next) {
             return array[index];
         } else {
@@ -72,26 +72,26 @@ public class MyIntList {
         }
     }
     
-    public void setAt(int index, int value) throws MyListFullException {
+    public void setAt(int index, String value) throws MyListFullException {
         if (index < next) {
             array[index] = value;
         } else {
-            System.out.printf("%d not in range of MyIntList, %d will be added to index %d\n", 
+            System.out.printf("%d not in range of MyStringList, %s will be added to index %d\n", 
                 index, value, next);
             add(value);
         }
     }
     
-    public void insertAt(int index, int value) throws MyListFullException {
+    public void insertAt(int index, String value) throws MyListFullException {
         if (index < next) {
             if (next >= length) {
                 if (length < MAX_LENGTH) {
                    extend();
                 } else {
-                    throw new MyListFullException("MyIntList is full, not possible to add another value");
+                    throw new MyListFullException("MyStringList is full, not possible to add another value");
                 }
             }
-            int[] temp = new int[length];
+            String[] temp = new String[length];
             for (int i = 0; i < index; i++) {
                 temp[i] = array[i];
             }
@@ -102,7 +102,7 @@ public class MyIntList {
             array = temp;
             next++;
         } else {
-            System.out.printf("%d not in range of MyIntList, %d will be added to index %d\n", 
+            System.out.printf("%d not in range of MyStringList, %s will be added to index %d\n", 
                 index, value, next);
             add(value);
         }
@@ -111,7 +111,7 @@ public class MyIntList {
     public void removeAt(int index) throws MyIndexOutOfBoundsException {
         if (index < next) {
             next--;
-            int[] temp = new int[length];
+            String[] temp = new String[length];
             for (int i = 0; i < index; i++) {
                 temp[i] = array[i];
             }
@@ -129,7 +129,7 @@ public class MyIntList {
     
     public void clear() {
         length = MIN_LENGTH;
-        array = new int[length];
+        array = new String[length];
         next = 0;
     }
     
@@ -137,17 +137,17 @@ public class MyIntList {
         return next;
     }
     
-    public boolean contains(int value) {
+    public boolean contains(String value) {
         for (int i = 0; i < next; i++) {
-            if (array[i] == value) {
+            if (array[i].equals(value)) {
                 return true;
             }
         }
         return false;
     }
     
-    public MyIntList where(Predicate<Integer> condition) {
-        MyIntList conditionalValues = new MyIntList();
+    public MyStringList where(Predicate<String> condition) {
+        MyStringList conditionalValues = new MyStringList();
         for (int i = 0; i < next; i++) {
             if (condition.test(array[i])) {
                 try {
@@ -160,7 +160,7 @@ public class MyIntList {
         return conditionalValues;
     }
     
-    public int[] toArray() {
+    public String[] toArray() {
         return array;
     }
     
@@ -178,7 +178,7 @@ public class MyIntList {
     
     private void extend() {
         length *= 2;
-        int[] temp = new int[length];
+        String[] temp = new String[length];
         for (int i = 0; i < next; i++) {
             temp[i] = array[i];
         }
@@ -187,7 +187,7 @@ public class MyIntList {
     
     private void reduce() {
         length /= 2;
-        int[] temp = new int[length];
+        String[] temp = new String[length];
         for (int i = 0; i < next; i++) {
             temp[i] = array[i];
         }
