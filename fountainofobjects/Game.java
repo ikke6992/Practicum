@@ -182,10 +182,12 @@ public class Game {
         }
     }
     
-    public void enableFountain() {
+    public void enableFountain() throws InvalidMoveException {
         if (grid[row][column] instanceof FountainRoom) {
             ((FountainRoom) grid[row][column]).activate();
             activated = true;
+        } else {
+            throw new InvalidMoveException();
         }
     }
     

@@ -34,13 +34,21 @@ public class GameHandler {
             }
         } while (!valid);
         
-        System.out.println(ConsoleColor.MAGENTA.colorString("The player moves through the cavern system one room " +
-            "at a time to find the Fountain of Objects.\nThey activate it and then return to the entrance room. " +
-            "If they do this without falling into a pit, they win the game.\n\nUnnatural darkness pervades the caverns, " +
-            "preventing both natural and human-made light.\nThe player must navigate the caverns in the dark, relying " +
-            "on their sense of smell\nand hearing to determine what room they are in and what dangers lurk in nearby rooms.\n\n" +
-            "The player is in one of the rooms and can move between them by typing commands like the following: \n" +
-            "(move north|move south|move east|move west|enable fountain|exit)"));
+        System.out.println(ConsoleColor.MAGENTA.colorString("You enter the Cavern of Objects, " +
+        "a maze of rooms filled with dangerous pits in search of the Fountain of Objects.\n" +
+        "Light is visible only in the entrance, and no other light is seen anywhere in the caverns.\n" +
+        "You must navigate the Caverns with your other senses.\n" +
+        "Find the Fountain of Objects, activate it, and return to the entrance.\n" +
+        "Look out for pits. You will feel a breeze if a pit is in an adjacent room. If you enter a room " +
+        "with a pit, you will die.\n" +
+        "Maelstroms are violent forces of sentient wind. Entering a room with one could transport you " +
+        "to any other location in the caverns.\nYou will be able to hear their growling and groaning in nearby rooms.\n" +
+        "Amaroks roam the caverns. Encountering one is certain death, but you can smell their rotten stench in nearby rooms.\n" +
+        "You carry with you a bow and a quiver of arrows. You can use them to shoot monsters in the caverns but be warned:\n" +
+        "you have a limited supply.\n"));
+        
+        printCommandList();
+        System.out.println("\n");
         
         do {
             System.out.println(game.getState());
@@ -59,6 +67,7 @@ public class GameHandler {
                     case "shoot south" -> game.shoot(Direction.SOUTH);
                     case "shoot west" -> game.shoot(Direction.WEST);
                     case "enable fountain" -> game.enableFountain();
+                    case "help" -> printCommandList();
                     case "exit" -> game.end();
                     default -> System.out.println(ConsoleColor.RED.colorString("Invalid command"));
                 }
@@ -77,4 +86,15 @@ public class GameHandler {
                 "and you have escaped with your life!\nYou win!"));
         }
     }
+    
+    public static void printCommandList() {
+        System.out.println(ConsoleColor.GREEN.colorString("You can move in any cardinal direction " +
+            "with the following commands:\n(move north|move east|move south|move west)\n" +
+            "If you have arrows remaining, you can shoot an arrow in any cardinal direction " +
+            "with the following commands:\n(shoot north|shoot east|shoot south|shoot west)\n" +
+            "If you're in the fountain location you can enable it with the following command: " +
+            "(enable fountain)\nOther available commands are (help|exit), help gets you a reminder " +
+            "of the list of possible commands\nand exit lets you exit the game without completing it."));       
+    }
+    
 }
