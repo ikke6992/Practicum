@@ -34,6 +34,33 @@ public class Game {
         ended = false;
     }
     
+    public Game(int length) {
+        LENGTH = length;
+        grid = new Room[LENGTH][LENGTH];
+        
+        for (int i = 0; i < LENGTH; i++) {
+            for (int j = 0; j < LENGTH; j++) {
+                grid[i][j] = new EmptyRoom();
+            }
+        }
+        
+        grid[0][0] = new CavernEntranceRoom();
+        
+        int i;
+        int j;
+        do {
+            i = (int)(Math.random()*LENGTH);
+            j = (int)(Math.random()*LENGTH);
+        } while (i == 0 && j == 0);
+        grid[i][j] = new FountainRoom();
+        
+        row = 0;
+        column = 0;
+        
+        activated = false;
+        ended = false;
+    }
+    
     public void move(Direction direction) throws InvalidMoveException {
         switch(direction) {
             case NORTH -> {

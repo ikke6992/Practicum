@@ -11,6 +11,29 @@ public class GameHandler {
         Scanner in = new Scanner(System.in);
         Game game = new Game();
         
+        System.out.print("What size should the cavern be? OPTIONS: (small|medium|large) ");
+        boolean valid = false;
+        
+        do {
+            String size = in.nextLine();
+            
+            switch (size) {
+                case "small" -> {
+                    game = new Game(4);
+                    valid = true;
+                }
+                case "medium" -> {
+                    game = new Game(6);
+                    valid = true;
+                }
+                case "large" -> {
+                    game = new Game(8);
+                    valid = true;
+                }
+                default -> System.out.println(ConsoleColor.RED.colorString("Invalid command"));
+            }
+        } while (!valid);
+        
         System.out.println(ConsoleColor.MAGENTA.colorString("The player moves through the cavern system one room " +
             "at a time to find the Fountain of Objects.\nThey activate it and then return to the entrance room. " +
             "If they do this without falling into a pit, they win the game.\n\nUnnatural darkness pervades the caverns, " +
