@@ -1,3 +1,5 @@
+package pg;
+
 public class Preparations {
     
     public enum Material {

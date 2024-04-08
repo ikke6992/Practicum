@@ -1,5 +1,9 @@
+package manticore;
+
 import java.util.Random;
 import java.util.Scanner;
+
+import pg.TakingANumber;
 
 public class HuntingTheManticore {
     

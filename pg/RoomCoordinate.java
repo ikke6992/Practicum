@@ -1,3 +1,5 @@
+package pg;
+
 public class RoomCoordinate {
 
     public record Coordinate(int row, int column) {}

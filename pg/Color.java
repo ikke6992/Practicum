@@ -1,3 +1,5 @@
+package pg;
+
 public class Color {
     
     private static final int MIN_COLOR = 0;

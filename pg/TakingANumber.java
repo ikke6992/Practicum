@@ -1,3 +1,5 @@
+package pg;
+
 import java.util.Scanner;
 
 public class TakingANumber {
@@ -6,8 +8,6 @@ public class TakingANumber {
      * Controleert of de meegegeven String een getal is dmv parseInt
      * Zoniet dan catcht het de NumberFormatException en wordt de
      * return de minimum waarde die een integer kan hebben.
-     *
-     * Zou dit netter kunnen?
      */
     public static int askForNumber(String text) {
 
@@ -27,8 +27,6 @@ public class TakingANumber {
      * Zowel dan checkt het of het getal buiten de minimum en maximum
      * meegegeven waarde valt, en als dit zo is wordt de return ook
      * de minimum integer waarde.
-     *
-     * Zou dit netter kunnen?
      */
     public static int askForNumberInRange(String text, int min, int max) {
         int result;

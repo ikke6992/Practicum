@@ -1,3 +1,5 @@
+package pg;
+
 public class WhatComesNext {
     
     public static void main(String[] args) {

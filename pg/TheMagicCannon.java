@@ -1,3 +1,5 @@
+package pg;
+
 public class TheMagicCannon {
 
     public enum Color {

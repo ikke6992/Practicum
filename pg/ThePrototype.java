@@ -1,3 +1,5 @@
+package pg;
+
 import java.util.Scanner;
 
 public class ThePrototype {

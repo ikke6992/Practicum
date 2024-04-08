@@ -1,4 +1,8 @@
+package manticore;
+
 import java.util.Scanner;
+
+import pg.TakingANumber;
 
 public class ManticoreHunting {
     

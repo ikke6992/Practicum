@@ -1,3 +1,5 @@
+package pg;
+
 public class TheVariableShop {
     
     public static void main(String[] args) {

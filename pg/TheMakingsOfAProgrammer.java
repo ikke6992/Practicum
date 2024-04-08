@@ -1,3 +1,5 @@
+package pg;
+
 public class TheMakingsOfAProgrammer {
 
     public static void main(String[] args) {

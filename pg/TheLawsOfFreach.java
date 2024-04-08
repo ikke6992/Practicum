@@ -1,3 +1,5 @@
+package pg;
+
 public class TheLawsOfFreach {
 
     public static void main(String[] args) {
