@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class HuntingTheManticore {
@@ -10,15 +11,19 @@ public class HuntingTheManticore {
         Scanner scanner = new Scanner(System.in);
         
         /*
-         * Asks the first player where to deploy the Manticore until the desired distance is within the 
-         * range determined by MIN_DISTANCE and MAX_DISTANCE
+         * Asks the first player or the computer where to deploy the Manticore until the desired 
+         * distance is within the range determined by MIN_DISTANCE and MAX_DISTANCE
          */
         int distance = Integer.MIN_VALUE;
-        do {
+        if (args.length == 0) {
+            distance = new Random().nextInt(MAX_DISTANCE);
+        }
+        
+        while (distance == Integer.MIN_VALUE) {
         System.out.print("Player 1, how far away from the city " +
             "do you want to station the Manticore? ");
         distance = TakingANumber.askForNumberInRange(scanner.nextLine(), MIN_DISTANCE, MAX_DISTANCE);
-        } while (distance == Integer.MIN_VALUE);
+        }
         
         // Clears the screen so the second player can't see the location of the Manticore
         for (int i = 0; i < 50; i++) {

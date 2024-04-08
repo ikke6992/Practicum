@@ -1,6 +1,9 @@
 package fountainofobjects;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Scanner;
+
 import myenums.ConsoleColor;
 import myexceptions.InvalidMoveException;
 
@@ -34,6 +37,7 @@ public class GameHandler {
             }
         } while (!valid);
         
+        LocalDateTime start = LocalDateTime.now();
         System.out.println(ConsoleColor.MAGENTA.colorString("You enter the Cavern of Objects, " +
         "a maze of rooms filled with dangerous pits in search of the Fountain of Objects.\n" +
         "Light is visible only in the entrance, and no other light is seen anywhere in the caverns.\n" +
@@ -78,12 +82,16 @@ public class GameHandler {
             System.out.println("-".repeat(82));
             
         } while (!game.hasEnded());
+        LocalDateTime end = LocalDateTime.now();
+        long time = Duration.between(start, end).toSeconds();
         
         
         System.out.println(game.getState());
         if (game.hasWon()) {
             System.out.println(ConsoleColor.MAGENTA.colorString("The Fountain of Objects has been reactivated, " + 
-                "and you have escaped with your life!\nYou win!"));
+                "and you have escaped with your life in " + time + " seconds!\nYou win!"));
+        } else {
+            System.out.println(ConsoleColor.RED.colorString("You lasted " + time + " seconds."));
         }
     }
     
